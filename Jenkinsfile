@@ -6,8 +6,8 @@ pipeline {
     environment {
         MAVEN_OPTS     = "-Dmaven.repo.local=/var/lib/jenkins/.m2/repository"
         AWS_REGION     = 'us-east-1'
-        AWS_ACCOUNT_ID = credentials('aws-account-id')
-        ECR_REPO       = credentials('ecr-repo-name')
+        AWS_ACCOUNT_ID = sh(script: 'aws sts get-caller-identity --query Account --output text', returnStdout: true).trim()
+        ECR_REPO       = 'your-ecr-repo-name'   // just hardcode repo name, it's not sensitive
         IMAGE_TAG      = "${BUILD_NUMBER}"
         TF_DIR         = '.'
     }
