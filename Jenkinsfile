@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         MAVEN_OPTS     = "-Dmaven.repo.local=/var/lib/jenkins/.m2/repository"
-        AWS_REGION     = credentials('aws-region')
+        AWS_REGION     = 'us-east-1'
         AWS_ACCOUNT_ID = credentials('aws-account-id')
         ECR_REPO       = credentials('ecr-repo-name')
         IMAGE_TAG      = "${BUILD_NUMBER}"
